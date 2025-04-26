@@ -2,61 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply text-surface-800 dark:text-surface-100;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold;
-  }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer components {
-  .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 transform;
-  }
-  
-  .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-dark active:scale-95;
-  }
-  
-  .btn-secondary {
-    @apply bg-secondary text-white hover:bg-secondary-dark active:scale-95;
-  }
-  
-  .btn-outline {
-    @apply border border-surface-300 dark:border-surface-700 hover:bg-surface-100 dark:hover:bg-surface-800 active:scale-95;
-  }
-  
-  .input-field {
-    @apply w-full px-4 py-2 bg-white dark:bg-surface-800 border border-surface-300 dark:border-surface-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/30 transition-all;
-  }
-  
-  .task-card {
-    @apply relative p-4 bg-white dark:bg-surface-800 rounded-xl border border-surface-200 dark:border-surface-700 transition-all duration-300 hover:shadow-soft dark:hover:shadow-none;
-  }
-  
-  .category-pill {
-    @apply px-3 py-1 text-xs font-medium rounded-full;
-  }
+/* Custom styles for draggable components */
+.task-item {
+  transition: background-color 0.2s ease;
+  user-select: none;
+  margin: 0 0 8px 0;
 }
 
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .glass-effect {
-    @apply bg-white/80 dark:bg-surface-800/80 backdrop-blur-md;
-  }
-  
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.task-item.dragging {
+  background-color: #f0f9ff;
+}
+
+.task-column {
+  transition: background-color 0.2s ease;
+}
+
+.task-column.dragging-over {
+  background-color: #e0f2fe;
 }
