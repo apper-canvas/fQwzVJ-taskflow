@@ -2,30 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    @apply antialiased;
+  }
+  
+  /* Additional base styles for the light theme */
+  .light {
+    --color-primary: #3b82f6;
+    --color-background: #f9fafb;
+    --color-card: #ffffff;
+    --color-text-primary: #111827;
+    --color-text-secondary: #4b5563;
+  }
+  
+  /* Additional base styles for the dark theme */
+  .dark {
+    --color-primary: #60a5fa;
+    --color-background: #111827;
+    --color-card: #1f2937;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #d1d5db;
+  }
 }
 
-/* Custom styles for draggable components */
-.task-item {
-  transition: background-color 0.2s ease;
-  user-select: none;
-  margin: 0 0 8px 0;
-}
-
-.task-item.dragging {
-  background-color: #f0f9ff;
-}
-
-.task-column {
-  transition: background-color 0.2s ease;
-}
-
-.task-column.dragging-over {
-  background-color: #e0f2fe;
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200;
+  }
 }
