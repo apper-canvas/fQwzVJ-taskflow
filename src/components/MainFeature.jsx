@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X, Calendar, Tag, Clock, AlertCircle } from "lucide-react";
+import { useTaskContext } from "../context/TaskContext";
 
 const MainFeature = ({ onAddTask }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -12,6 +13,7 @@ const MainFeature = ({ onAddTask }) => {
     dueDate: "",
   });
   const [errors, setErrors] = useState({});
+  const { addTask: addTaskToContext } = useTaskContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,8 +54,9 @@ const MainFeature = ({ onAddTask }) => {
       return;
     }
     
+    // Create task for the local state management
     const newTask = {
-      id: Date.now().toString(),
+      id: `task-${Date.now()}`,
       title: formData.title.trim(),
       description: formData.description.trim(),
       priority: formData.priority,
@@ -63,7 +66,11 @@ const MainFeature = ({ onAddTask }) => {
       createdAt: new Date().toISOString(),
     };
     
+    // Add task to the regular task list
     onAddTask(newTask);
+    
+    // Also add the task to the drag-and-drop context - add to the first column (To Do)
+    addTaskToContext('column-1', formData.title.trim());
     
     // Reset form
     setFormData({

@@ -75,7 +75,7 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          TaskFlow
+          Tasker
         </motion.h1>
         <motion.p 
           className="text-surface-600 dark:text-surface-400 max-w-2xl mx-auto"
